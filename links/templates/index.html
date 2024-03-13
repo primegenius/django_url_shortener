@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Prime.ly Home {% endblock title %}</title>
+</head>
+<body>
+
+    {% block content %}
+        <div class="container py-5">
+            <h2 class="text-center text-decoration-underline">All Links</h2>
+            <div class="d-flex justify-content-center flex-wrap">
+                {% for link in links %}
+                <div class="card my-md-3 my-3 mx-4 border-warning-subtle border-2" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{link.name|title}}</h5>
+                      <a target="_blank" class="text-decoration-none" href="{{link.url}}"><h6 class="card-subtitle mb-2 text-info link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{link.url}}</h6></a>
+                      <p class="card-text">You will be redirected to {{link.slug}} when you click on this link. Thank you!</p>
+                      <a target="_blank" href="{% url 'root-link' link.slug %}" class="card-link text-decoration-none text-info link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{link.slug}}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock content %}
+</body>
+</html>
